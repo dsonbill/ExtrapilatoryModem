@@ -171,8 +171,9 @@ namespace ExtrapilatoryModem
             theory = theory.Replace(" ", "");
 
             string solver = data[51].ToString() + data[52].ToString() + data[53].ToString();
+            solver = solver.Replace(" ", "");
 
-            Func<int, double> solverFunction = (input) => { return 0; };
+            Func<int, double> solverFunction = (input) => { return input; };
             switch(solver)
             {
                 case "D":
@@ -193,6 +194,9 @@ namespace ExtrapilatoryModem
                 case "CCC":
                     solverFunction = (input) => { return VariableFunction(VariableFunction(VariableFunction((double)input))); };
                     break;
+                case "  ":
+                    return;
+
             }
 
             char[] arr = theory.ToCharArray();
